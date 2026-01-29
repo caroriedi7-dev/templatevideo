@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Até Encontrar | Pesquisa PKS</title>
-  <meta name="description" content="Campanha para iniciar pesquisa em Síndrome de Pallister-Killian (PKS) com organoides cerebrais. Meta: US$ 500.000." />
+  <meta id="metaDesc" name="description" content="Campanha para iniciar pesquisa em Síndrome de Pallister-Killian (PKS) com organoides cerebrais. Meta: 500.000 €." />
 
   <style>
     :root{
@@ -67,6 +67,12 @@
     }
     nav a:hover{background:rgba(37,99,235,.10);color:var(--fg)}
     .controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+    select{
+      font-size:14px;padding:10px 12px;border-radius:999px;
+      border:1px solid var(--line);background:#fff;color:var(--fg);cursor:pointer;
+      font-weight:900;
+    }
 
     button{
       font-size:14px;padding:10px 12px;border-radius:999px;
@@ -361,6 +367,43 @@
       font-size:13px;
     }
     .footerGrid{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+    /* --- Requested campaign text block --- */
+    .campaignBlock{
+      margin-top:18px;
+      border-radius:28px;
+      padding:18px;
+      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(34,176,125,.18));
+      border:1px solid rgba(255,255,255,.60);
+      box-shadow: var(--shadow);
+    }
+    .campaignInner{
+      background: rgba(255,255,255,.92);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:20px;
+      box-shadow: var(--shadow2);
+    }
+    .campaignTitle{
+      margin:0 0 10px;
+      color:var(--fg);
+      font-size:24px;
+      letter-spacing:-.2px;
+      font-weight:1000;
+    }
+    .campaignText{margin:0;color:var(--muted);max-width:90ch}
+    .campaignList{margin:12px 0 0;padding-left:18px;color:var(--muted)}
+    .campaignList li{margin:8px 0}
+    .campaignGoal{
+      margin-top:14px;
+      border-radius:18px;
+      padding:14px;
+      background: linear-gradient(135deg, rgba(34,176,125,.18), rgba(37,99,235,.14));
+      border:1px solid rgba(37,99,235,.16);
+      color:var(--fg);
+      font-weight:950;
+    }
+    .campaignGoal big{font-size:20px}
   </style>
 </head>
 
@@ -373,18 +416,24 @@
     </div>
 
     <nav>
-      <a href="#home">Início</a>
-      <a href="#donate">Doar</a>
-      <a href="#video">Vídeo</a>
-      <a href="#research">Pesquisa</a>
-      <a href="#pks">PKS</a>
+      <a href="#home" data-i18n="nav_home">Início</a>
+      <a href="#donate" data-i18n="nav_donate">Doar</a>
+      <a href="#video" data-i18n="nav_video">Vídeo</a>
+      <a href="#research" data-i18n="nav_research">Pesquisa</a>
+      <a href="#pks" data-i18n="nav_pks">PKS</a>
     </nav>
 
     <div class="controls">
-      <button class="btnPrimary" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">
+      <select id="lang" aria-label="Idioma">
+        <option value="pt">PT</option>
+        <option value="fr">FR</option>
+        <option value="en">EN</option>
+      </select>
+
+      <button class="btnPrimary" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})" data-i18n="btn_donate_now">
         Doar agora
       </button>
-      <button class="btnGhost" onclick="copyLink()">
+      <button class="btnGhost" onclick="copyLink()" data-i18n="btn_copy_link">
         Copiar link
       </button>
     </div>
@@ -397,45 +446,94 @@
   <section id="home" class="hero">
     <div class="heroInner">
       <div class="heroText">
-        <p class="kicker">Uma campanha para iniciar pesquisa em Pallister-Killian (PKS) com rapidez</p>
+        <p class="kicker" data-i18n="hero_kicker">Uma campanha para iniciar pesquisa em Pallister-Killian (PKS) com rapidez</p>
 
-        <h2 class="heroTitle">Até Encontrar</h2>
+        <h2 class="heroTitle" data-i18n="hero_title">Até Encontrar</h2>
 
-        <p class="heroSub">
+        <p class="heroSub" data-i18n="hero_sub">
           Existe um <b>laboratório nos Estados Unidos</b> com <b>aprovação do FDA para esse tipo de pesquisa</b>.
           Assim que levantarmos o valor inicial, podemos iniciar rapidamente um programa com <b>3 crianças com PKS</b>.
         </p>
 
         <div class="chips">
-          <span class="chip">⚡ Pronto para iniciar</span>
-          <span class="chip">👶 Estudo com 3 crianças</span>
-          <span class="chip">🧠 Organoides cerebrais</span>
-          <span class="chip">🎯 Meta: US$ 500.000</span>
+          <span class="chip" data-i18n="chip_ready">⚡ Pronto para iniciar</span>
+          <span class="chip" data-i18n="chip_3kids">👶 Estudo com 3 crianças</span>
+          <span class="chip" data-i18n="chip_org">🧠 Organoides cerebrais</span>
+          <span class="chip" data-i18n="chip_goal">🎯 Meta: 500.000 €</span>
         </div>
 
         <div class="heroCTA">
-          <button class="btnPrimary" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Doar agora</button>
-          <button class="btnGhost" onclick="document.getElementById('video').scrollIntoView({behavior:'smooth'})">Assistir ao vídeo</button>
+          <button class="btnPrimary" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})" data-i18n="btn_donate_now">
+            Doar agora
+          </button>
+          <button class="btnGhost" onclick="document.getElementById('video').scrollIntoView({behavior:'smooth'})" data-i18n="btn_watch_video">
+            Assistir ao vídeo
+          </button>
         </div>
 
         <div class="banner">
-          <span class="tag">✅ Aprovação FDA</span>
-          <span class="tag">🚀 Início rápido após captação</span>
-          <span class="tag">Meta: <b class="amount">US$ 500.000</b></span>
+          <span class="tag" data-i18n="tag_fda">✅ Aprovação FDA</span>
+          <span class="tag" data-i18n="tag_fast">🚀 Início rápido após captação</span>
+          <span class="tag"><span data-i18n="tag_goal_prefix">Meta:</span> <b class="amount">500.000 €</b></span>
         </div>
 
         <div class="quote">
-          <strong>“Todas as doenças são curáveis. Ainda precisamos encontrar o tratamento.”</strong>
-          <div class="fine">
+          <strong data-i18n="quote_main">“Todas as doenças são curáveis. Ainda precisamos encontrar o tratamento.”</strong>
+          <div class="fine" data-i18n="quote_fine">
             Pesquisa leva tempo e não há garantias — mas sem pesquisa nada começa.
           </div>
         </div>
       </div>
 
       <div class="heroMedia">
-        <!-- Imagem simbólica (pode trocar por foto de vocês mais tarde) -->
         <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1600&q=80" alt="Imagem simbólica" />
-        <div class="mediaTag">Imagem simbólica — sem exposição</div>
+        <div class="mediaTag" data-i18n="media_tag">Imagem simbólica — sem exposição</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUR REQUESTED TEXT (FR on FR / PT translated on PT) -->
+  <section class="campaignBlock" aria-label="Campanha">
+    <div class="campaignInner">
+      <h3 class="campaignTitle" data-i18n="why_title">Pourquoi votre aide est essentielle</h3>
+
+      <p class="campaignText" data-i18n="why_p1">
+        Giulia est atteinte du syndrome de Pallister-Killian, une maladie génétique rare pour laquelle aucun traitement curatif n’existe aujourd’hui.
+        La médecine propose uniquement des soins de soutien. Mais la science, elle, ouvre d’autres perspectives.
+      </p>
+
+      <p class="campaignText" style="margin-top:12px" data-i18n="why_p2">
+        Après dix mois de recherches approfondies et l’analyse de dizaines d’articles scientifiques, nous avons identifié une approche innovante basée sur les organoïdes cérébraux.
+      </p>
+
+      <p class="campaignText" style="margin-top:10px" data-i18n="why_lead">Cette approche permet de :</p>
+      <ul class="campaignList">
+        <li data-i18n="why_li1">reproduire la maladie en laboratoire,</li>
+        <li data-i18n="why_li2">tester des médicaments déjà existants,</li>
+        <li data-i18n="why_li3">évaluer leur efficacité et leur toxicité,</li>
+        <li data-i18n="why_li4">accélérer considérablement la recherche.</li>
+      </ul>
+
+      <p class="campaignText" style="margin-top:12px" data-i18n="why_p3">
+        Le laboratoire partenaire dispose déjà des autorisations nécessaires pour mener ce type de recherche.
+        Le projet est prêt. La science est prête. Ce qu’il manque aujourd’hui, ce sont les fonds.
+      </p>
+
+      <div class="campaignGoal" data-i18n="why_goal">
+        🎯 <big>Objectif : 500 000 €</big><br/>
+        Pour lancer immédiatement la recherche.<br/><br/>
+        Chaque jour compte.<br/>
+        Chaque mois de retard est du temps perdu pour Giulia.<br/><br/>
+        Avec votre soutien, nous pouvons transformer une maladie sans solution en une maladie traitable.
+      </div>
+
+      <div class="heroCTA" style="margin-top:14px;">
+        <button class="btnPrimary" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})" data-i18n="btn_donate_now">
+          Doar agora
+        </button>
+        <button class="btnGhost" onclick="copyLink()" data-i18n="btn_copy_link">
+          Copiar link
+        </button>
       </div>
     </div>
   </section>
@@ -444,38 +542,38 @@
   <section id="donate" class="donateZone" aria-label="Doação">
     <div class="donateHead">
       <div>
-        <h2>Doar agora</h2>
-        <div class="mini">
-          Nosso objetivo é direto: levantar <b>US$ 500.000</b> para iniciar imediatamente a pesquisa em PKS com 3 crianças.
+        <h2 data-i18n="donate_title">Doar agora</h2>
+        <div class="mini" data-i18n="donate_sub">
+          Nosso objetivo é direto: levantar <b>500.000 €</b> para iniciar imediatamente a pesquisa em PKS com 3 crianças.
           Se você não puder doar, <b>divulgar</b> já ajuda muito.
         </div>
       </div>
-      <div class="mini"><b>💬 Dica:</b> compartilhe com grupos de família, escola, igreja, empresa e amigos.</div>
+      <div class="mini" data-i18n="donate_tip"><b>💬 Dica:</b> compartilhe com grupos de família, escola, igreja, empresa e amigos.</div>
     </div>
 
     <div class="donateGrid">
       <a class="donateBtn" href="#" onclick="return false;">
-        <div class="donateTitle">PIX (Brasil)</div>
-        <div class="donateSmall">Cole aqui sua chave/QR Code quando tiver</div>
-        <div class="donateSmall" style="margin-top:10px;"><b>Em breve</b></div>
+        <div class="donateTitle" data-i18n="donate_pix_title">PIX (Brasil)</div>
+        <div class="donateSmall" data-i18n="donate_pix_desc">Cole aqui sua chave/QR Code quando tiver</div>
+        <div class="donateSmall" style="margin-top:10px;"><b data-i18n="soon">Em breve</b></div>
       </a>
 
       <a class="donateBtn blue" href="#" onclick="return false;">
-        <div class="donateTitle">Cartão</div>
-        <div class="donateSmall">Cole aqui o link seguro de pagamento</div>
-        <div class="donateSmall" style="margin-top:10px;"><b>Em breve</b></div>
+        <div class="donateTitle" data-i18n="donate_card_title">Cartão</div>
+        <div class="donateSmall" data-i18n="donate_card_desc">Cole aqui o link seguro de pagamento</div>
+        <div class="donateSmall" style="margin-top:10px;"><b data-i18n="soon">Em breve</b></div>
       </a>
 
       <a class="donateBtn dark" href="#" onclick="return false;">
-        <div class="donateTitle">Doação internacional</div>
-        <div class="donateSmall">Dados/links para doação fora do Brasil</div>
-        <div class="donateSmall" style="margin-top:10px;"><b>Em breve</b></div>
+        <div class="donateTitle" data-i18n="donate_intl_title">Doação internacional</div>
+        <div class="donateSmall" data-i18n="donate_intl_desc">Dados/links para doação fora do Brasil</div>
+        <div class="donateSmall" style="margin-top:10px;"><b data-i18n="soon">Em breve</b></div>
       </a>
     </div>
 
     <div class="callout">
-      <b>Não pode doar agora?</b>
-      <div class="cardText">
+      <b data-i18n="donate_share_title">Não pode doar agora?</b>
+      <div class="cardText" data-i18n="donate_share_text">
         Compartilhe esta página com <b>5 pessoas</b>. Uma campanha só ganha velocidade quando muita gente vê.
       </div>
     </div>
@@ -483,19 +581,15 @@
 
   <!-- VÍDEO + NOSSO CASO -->
   <section id="video" style="margin-top:18px;">
-    <h3 class="sectionTitle">Nosso caso (e por que estamos correndo)</h3>
-    <p class="sectionSub">
+    <h3 class="sectionTitle" data-i18n="video_title">Nosso caso (e por que estamos correndo)</h3>
+    <p class="sectionSub" data-i18n="video_sub">
       Vamos nos expor o necessário para acelerar essa captação — com respeito, sem transformar a vida em espetáculo.
       O foco é o objetivo: <b>começar a pesquisa</b>.
     </p>
 
     <div class="grid2">
       <div class="card">
-        <h4 class="cardTitle">Assista ao vídeo</h4>
-        <!-- Troque VIDEO_URL_AQUI pelo seu link do YouTube/Vimeo. Exemplo:
-             https://www.youtube.com/embed/SEU_ID
-             https://player.vimeo.com/video/SEU_ID
-        -->
+        <h4 class="cardTitle" data-i18n="video_watch">Assista ao vídeo</h4>
         <div class="videoWrap" aria-label="Vídeo">
           <iframe
             src="VIDEO_URL_AQUI"
@@ -503,31 +597,28 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
         </div>
-        <p class="fine">Se você ainda não tem o vídeo, deixe assim e a gente troca depois.</p>
+        <p class="fine" data-i18n="video_note">Se você ainda não tem o vídeo, deixe assim e a gente troca depois.</p>
       </div>
 
       <div class="card">
-        <h4 class="cardTitle">Em poucas linhas</h4>
-        <p class="cardText">
+        <h4 class="cardTitle" data-i18n="video_short">Em poucas linhas</h4>
+        <p class="cardText" data-i18n="video_text">
           Nossa filha tem <b>Síndrome de Pallister-Killian (PKS)</b>. Apesar de não apresentar malformações estruturais importantes,
           ela enfrenta um atraso motor e social significativo.
-          <br><br>
-          O que mais dói é saber que, em doenças raras, muitas vezes existe ciência possível — mas falta o que viabiliza tudo:
-          <b>financiamento</b>.
           <br><br>
           Hoje, temos uma oportunidade concreta: um laboratório nos EUA já tem <b>aprovação do FDA</b> para realizar esse tipo de pesquisa.
           Assim que alcançarmos a meta inicial, o estudo pode começar rapidamente.
         </p>
 
         <ul class="bullets">
-          <li><b>Meta:</b> US$ 500.000</li>
-          <li><b>Início:</b> assim que o valor for viabilizado</li>
-          <li><b>Escopo inicial:</b> 3 crianças com PKS</li>
+          <li data-i18n="video_li1"><b>Meta:</b> 500.000 €</li>
+          <li data-i18n="video_li2"><b>Início:</b> assim que o valor for viabilizado</li>
+          <li data-i18n="video_li3"><b>Escopo inicial:</b> 3 crianças com PKS</li>
         </ul>
 
         <div class="heroCTA">
-          <button class="btnPrimary" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Doar agora</button>
-          <button class="btnGhost" onclick="copyLink()">Copiar link para divulgar</button>
+          <button class="btnPrimary" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})" data-i18n="btn_donate_now">Doar agora</button>
+          <button class="btnGhost" onclick="copyLink()" data-i18n="btn_copy_link">Copiar link</button>
         </div>
       </div>
     </div>
@@ -535,49 +626,47 @@
 
   <!-- PESQUISA / ORGANOIDES -->
   <section id="research" style="margin-top:18px;">
-    <h3 class="sectionTitle">O que vamos pesquisar (com organoides)</h3>
-    <p class="sectionSub">
-      A ideia é simples de entender: criar um modelo biológico em laboratório para testar estratégias com mais segurança —
+    <h3 class="sectionTitle" data-i18n="research_title">O que vamos pesquisar (com organoides)</h3>
+    <p class="sectionSub" data-i18n="research_sub">
+      A ideia é simples: criar um modelo biológico em laboratório para testar estratégias com mais segurança,
       antes de pensar em qualquer aplicação clínica.
     </p>
 
     <div class="grid2">
       <div class="card">
-        <h4 class="cardTitle">Como funciona</h4>
-        <p class="cardText">
-          O estudo começa com uma <b>biópsia de pele</b> (procedimento simples). A partir dessas células, o laboratório consegue
-          gerar células reprogramadas e criar <b>organoides cerebrais</b> — “mini-modelos” que ajudam a estudar como o cérebro se desenvolve
-          e reage em condições específicas.
+        <h4 class="cardTitle" data-i18n="research_how_title">Como funciona</h4>
+        <p class="cardText" data-i18n="research_how_text">
+          O estudo começa com uma <b>biópsia de pele</b> (procedimento simples). A partir dessas células, o laboratório pode
+          criar <b>organoides cerebrais</b> — modelos que ajudam a estudar mecanismos do neurodesenvolvimento em laboratório.
           <br><br>
-          Na prática, isso cria um tipo de <b>“avatar biológico”</b> para investigar o PKS e testar hipóteses de forma mais segura,
+          Na prática, isso cria um tipo de <b>“avatar biológico”</b> para investigar o PKS e testar hipóteses
           sem experimentar diretamente nas crianças.
         </p>
 
         <div class="callout">
-          <b>Por que organoides?</b>
-          <div class="cardText">
-            Porque eles permitem observar mecanismos e comparar respostas, acelerando a triagem de estratégias promissoras.
+          <b data-i18n="research_why_title">Por que organoides?</b>
+          <div class="cardText" data-i18n="research_why_text">
+            Porque eles permitem observar mecanismos e acelerar a triagem de estratégias promissoras.
           </div>
         </div>
       </div>
 
       <div class="card">
-        <h4 class="cardTitle">O que essa fase entrega</h4>
-        <p class="cardText">
-          Esta primeira fase serve para gerar evidências iniciais (“prova de princípio”) e entender quais caminhos fazem sentido.
-          Isso é o que abre portas para próximas etapas de pesquisa.
+        <h4 class="cardTitle" data-i18n="research_deliver_title">O que essa fase entrega</h4>
+        <p class="cardText" data-i18n="research_deliver_text">
+          Esta fase gera evidências iniciais (“prova de princípio”) e ajuda a priorizar quais caminhos têm mais chance de avançar.
         </p>
 
         <ul class="bullets">
-          <li>Modelos derivados do paciente para estudar mecanismos</li>
-          <li>Testes iniciais para avaliar hipóteses com mais segurança</li>
-          <li>Resultados que guiam os próximos passos do projeto</li>
+          <li data-i18n="research_li1">Modelos derivados do paciente para estudar mecanismos</li>
+          <li data-i18n="research_li2">Testes iniciais para avaliar hipóteses</li>
+          <li data-i18n="research_li3">Resultados que guiam as próximas etapas</li>
         </ul>
 
         <div class="callout">
-          <b>Sem promessas — com plano real</b>
-          <div class="cardText">
-            Não existe garantia de resultado, mas existe um caminho sério, estruturado e pronto para começar assim que a meta for alcançada.
+          <b data-i18n="research_no_promise_title">Sem promessas — com plano real</b>
+          <div class="cardText" data-i18n="research_no_promise_text">
+            Não existe garantia de resultado, mas existe um caminho estruturado e pronto para começar quando a meta for alcançada.
           </div>
         </div>
       </div>
@@ -586,41 +675,41 @@
 
   <!-- PKS -->
   <section id="pks" style="margin-top:18px;">
-    <h3 class="sectionTitle">O que é Pallister-Killian (PKS)</h3>
-    <p class="sectionSub">
-      PKS é uma condição genética rara do neurodesenvolvimento, muitas vezes em mosaico. Isso traz grande variabilidade:
-      crianças podem ter quadros bem diferentes entre si. O objetivo desta campanha é acelerar uma pesquisa aplicada ao PKS.
+    <h3 class="sectionTitle" data-i18n="pks_title">O que é Pallister-Killian (PKS)</h3>
+    <p class="sectionSub" data-i18n="pks_sub">
+      PKS é uma condição genética rara do neurodesenvolvimento, frequentemente em mosaico. Isso traz grande variabilidade.
+      O objetivo desta campanha é acelerar uma pesquisa aplicada ao PKS.
     </p>
 
     <div class="grid2">
       <div class="card">
-        <h4 class="cardTitle">Por que vemos casos tão diferentes?</h4>
-        <p class="cardText">
-          Por ser frequentemente um mosaico, o percentual e a distribuição das células afetadas podem variar muito.
+        <h4 class="cardTitle" data-i18n="pks_diff_title">Por que vemos casos tão diferentes?</h4>
+        <p class="cardText" data-i18n="pks_diff_text">
+          Por ser frequentemente um mosaico, o percentual e a distribuição das células afetadas variam muito.
           Por isso, comparar histórias em redes sociais nem sempre reflete a realidade de cada criança.
         </p>
         <ul class="bullets">
-          <li>Variabilidade real — cada criança é única</li>
-          <li>Hoje não existe tratamento curativo específico</li>
-          <li>Pesquisa é o caminho para abrir possibilidades</li>
+          <li data-i18n="pks_li1">Variabilidade real — cada criança é única</li>
+          <li data-i18n="pks_li2">Hoje não existe tratamento curativo específico</li>
+          <li data-i18n="pks_li3">Pesquisa é o caminho para abrir possibilidades</li>
         </ul>
       </div>
 
       <div class="card">
-        <h4 class="cardTitle">Impacto</h4>
-        <p class="cardText">
-          Esta iniciativa é focada em PKS, mas pode beneficiar outras crianças com a mesma condição e, no futuro,
-          ajudar a abrir caminhos para condições com mecanismos semelhantes.
+        <h4 class="cardTitle" data-i18n="pks_impact_title">Impacto</h4>
+        <p class="cardText" data-i18n="pks_impact_text">
+          Esta iniciativa é focada em PKS, pode beneficiar outras crianças com a mesma condição e, no futuro,
+          abrir caminhos para condições com mecanismos semelhantes.
         </p>
         <div class="callout">
-          <b>O que precisamos agora?</b>
-          <div class="cardText">
+          <b data-i18n="pks_need_title">O que precisamos agora?</b>
+          <div class="cardText" data-i18n="pks_need_text">
             Velocidade. A ciência já está pronta para começar — falta viabilizar os recursos.
           </div>
         </div>
         <div class="heroCTA">
-          <button class="btnPrimary" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Doar agora</button>
-          <button class="btnGhost" onclick="document.getElementById('video').scrollIntoView({behavior:'smooth'})">Ver o vídeo</button>
+          <button class="btnPrimary" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})" data-i18n="btn_donate_now">Doar agora</button>
+          <button class="btnGhost" onclick="document.getElementById('video').scrollIntoView({behavior:'smooth'})" data-i18n="btn_watch_video">Assistir ao vídeo</button>
         </div>
       </div>
     </div>
@@ -629,9 +718,9 @@
   <footer>
     <div class="footerGrid">
       <div>© <span id="year"></span> Até Encontrar</div>
-      <div>Foco em PKS · Início rápido · Pesquisa com organoides</div>
+      <div data-i18n="footer_right">Foco em PKS · Início rápido · Pesquisa com organoides</div>
     </div>
-    <div class="fine" style="margin-top:10px;">
+    <div class="fine" style="margin-top:10px;" data-i18n="footer_contact">
       Contato (troque depois): <b>email@exemplo.org</b> · Instagram: <b>@ateencontrar</b>
     </div>
   </footer>
@@ -641,12 +730,12 @@
 <!-- BARRA FIXA DE DOAÇÃO -->
 <div class="donateBar" role="region" aria-label="Barra de doação">
   <div class="donateBarInner">
-    <div>
-      <b>Meta:</b> US$ 500.000 · <b>PKS</b> · Início rápido após captação
+    <div data-i18n="bar_text">
+      <b>Meta:</b> 500.000 € · <b>PKS</b> · Início rápido após captação
     </div>
     <div class="donateBarBtns">
-      <button class="btnBar" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Doar agora</button>
-      <button class="btnBarGhost" onclick="copyLink()">Copiar link</button>
+      <button class="btnBar" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})" data-i18n="btn_donate_now">Doar agora</button>
+      <button class="btnBarGhost" onclick="copyLink()" data-i18n="btn_copy_link">Copiar link</button>
     </div>
   </div>
 </div>
@@ -662,6 +751,287 @@
       prompt("Copie o link:", url);
     }
   }
+
+  const i18n = {
+    pt: {
+      title: "Até Encontrar | Pesquisa PKS",
+      desc: "Campanha para iniciar pesquisa em Síndrome de Pallister-Killian (PKS) com organoides cerebrais. Meta: 500.000 €.",
+
+      nav_home:"Início", nav_donate:"Doar", nav_video:"Vídeo", nav_research:"Pesquisa", nav_pks:"PKS",
+      btn_donate_now:"Doar agora", btn_copy_link:"Copiar link", btn_watch_video:"Assistir ao vídeo",
+
+      hero_kicker:"Uma campanha para iniciar pesquisa em Pallister-Killian (PKS) com rapidez",
+      hero_title:"Até Encontrar",
+      hero_sub:"Existe um <b>laboratório nos Estados Unidos</b> com <b>aprovação do FDA para esse tipo de pesquisa</b>. Assim que levantarmos o valor inicial, podemos iniciar rapidamente um programa com <b>3 crianças com PKS</b>.",
+      chip_ready:"⚡ Pronto para iniciar",
+      chip_3kids:"👶 Estudo com 3 crianças",
+      chip_org:"🧠 Organoides cerebrais",
+      chip_goal:"🎯 Meta: 500.000 €",
+      tag_fda:"✅ Aprovação FDA",
+      tag_fast:"🚀 Início rápido após captação",
+      tag_goal_prefix:"Meta:",
+      quote_main:"“Todas as doenças são curáveis. Ainda precisamos encontrar o tratamento.”",
+      quote_fine:"Pesquisa leva tempo e não há garantias — mas sem pesquisa nada começa.",
+      media_tag:"Imagem simbólica — sem exposição",
+
+      // Your requested text translated to PT
+      why_title:"Por que sua ajuda é essencial",
+      why_p1:"Giulia tem síndrome de Pallister-Killian, uma doença genética rara para a qual não existe tratamento curativo hoje. A medicina oferece apenas cuidados de suporte. Mas a ciência abre outras perspectivas.",
+      why_p2:"Após dez meses de pesquisas aprofundadas e a análise de dezenas de artigos científicos, identificamos uma abordagem inovadora baseada em <b>organoides cerebrais</b>.",
+      why_lead:"Essa abordagem permite:",
+      why_li1:"reproduzir a doença em laboratório,",
+      why_li2:"testar medicamentos já existentes,",
+      why_li3:"avaliar sua eficácia e sua toxicidade,",
+      why_li4:"acelerar consideravelmente a pesquisa.",
+      why_p3:"O laboratório parceiro já possui as autorizações necessárias para conduzir esse tipo de pesquisa. O projeto está pronto. A ciência está pronta. O que falta hoje são os recursos.",
+      why_goal:"🎯 <big>Meta: 500.000 €</big><br/>Para iniciar a pesquisa imediatamente.<br/><br/>Cada dia conta.<br/>Cada mês de atraso é tempo perdido para a Giulia.<br/><br/>Com o seu apoio, podemos transformar uma doença sem solução em uma doença tratável.",
+
+      donate_title:"Doar agora",
+      donate_sub:"Nosso objetivo é direto: levantar <b>500.000 €</b> para iniciar imediatamente a pesquisa em PKS com 3 crianças. Se você não puder doar, <b>divulgar</b> já ajuda muito.",
+      donate_tip:"<b>💬 Dica:</b> compartilhe com grupos de família, escola, igreja, empresa e amigos.",
+      donate_pix_title:"PIX (Brasil)",
+      donate_pix_desc:"Cole aqui sua chave/QR Code quando tiver",
+      donate_card_title:"Cartão",
+      donate_card_desc:"Cole aqui o link seguro de pagamento",
+      donate_intl_title:"Doação internacional",
+      donate_intl_desc:"Dados/links para doação fora do Brasil",
+      soon:"Em breve",
+      donate_share_title:"Não pode doar agora?",
+      donate_share_text:"Compartilhe esta página com <b>5 pessoas</b>. Uma campanha só ganha velocidade quando muita gente vê.",
+
+      video_title:"Nosso caso (e por que estamos correndo)",
+      video_sub:"Vamos nos expor o necessário para acelerar essa captação — com respeito, sem transformar a vida em espetáculo. O foco é o objetivo: <b>começar a pesquisa</b>.",
+      video_watch:"Assista ao vídeo",
+      video_note:"Se você ainda não tem o vídeo, deixe assim e a gente troca depois.",
+      video_short:"Em poucas linhas",
+      video_text:"Nossa filha tem <b>Síndrome de Pallister-Killian (PKS)</b>. Apesar de não apresentar malformações estruturais importantes, ela enfrenta um atraso motor e social significativo.<br><br>Hoje, temos uma oportunidade concreta: um laboratório nos EUA já tem <b>aprovação do FDA</b> para realizar esse tipo de pesquisa. Assim que alcançarmos a meta inicial, o estudo pode começar rapidamente.",
+      video_li1:"<b>Meta:</b> 500.000 €",
+      video_li2:"<b>Início:</b> assim que o valor for viabilizado",
+      video_li3:"<b>Escopo inicial:</b> 3 crianças com PKS",
+
+      research_title:"O que vamos pesquisar (com organoides)",
+      research_sub:"A ideia é simples: criar um modelo biológico em laboratório para testar estratégias com mais segurança, antes de pensar em qualquer aplicação clínica.",
+      research_how_title:"Como funciona",
+      research_how_text:"O estudo começa com uma <b>biópsia de pele</b> (procedimento simples). A partir dessas células, o laboratório pode criar <b>organoides cerebrais</b> — modelos que ajudam a estudar mecanismos do neurodesenvolvimento em laboratório.<br><br>Na prática, isso cria um tipo de <b>“avatar biológico”</b> para investigar o PKS e testar hipóteses sem experimentar diretamente nas crianças.",
+      research_why_title:"Por que organoides?",
+      research_why_text:"Porque eles permitem observar mecanismos e acelerar a triagem de estratégias promissoras.",
+      research_deliver_title:"O que essa fase entrega",
+      research_deliver_text:"Esta fase gera evidências iniciais (“prova de princípio”) e ajuda a priorizar quais caminhos têm mais chance de avançar.",
+      research_li1:"Modelos derivados do paciente para estudar mecanismos",
+      research_li2:"Testes iniciais para avaliar hipóteses",
+      research_li3:"Resultados que guiam as próximas etapas",
+      research_no_promise_title:"Sem promessas — com plano real",
+      research_no_promise_text:"Não existe garantia de resultado, mas existe um caminho estruturado e pronto para começar quando a meta for alcançada.",
+
+      pks_title:"O que é Pallister-Killian (PKS)",
+      pks_sub:"PKS é uma condição genética rara do neurodesenvolvimento, frequentemente em mosaico. Isso traz grande variabilidade. O objetivo desta campanha é acelerar uma pesquisa aplicada ao PKS.",
+      pks_diff_title:"Por que vemos casos tão diferentes?",
+      pks_diff_text:"Por ser frequentemente um mosaico, o percentual e a distribuição das células afetadas variam muito. Por isso, comparar histórias em redes sociais nem sempre reflete a realidade de cada criança.",
+      pks_li1:"Variabilidade real — cada criança é única",
+      pks_li2:"Hoje não existe tratamento curativo específico",
+      pks_li3:"Pesquisa é o caminho para abrir possibilidades",
+      pks_impact_title:"Impacto",
+      pks_impact_text:"Esta iniciativa é focada em PKS, pode beneficiar outras crianças com a mesma condição e, no futuro, abrir caminhos para condições com mecanismos semelhantes.",
+      pks_need_title:"O que precisamos agora?",
+      pks_need_text:"Velocidade. A ciência já está pronta para começar — falta viabilizar os recursos.",
+
+      footer_right:"Foco em PKS · Início rápido · Pesquisa com organoides",
+      footer_contact:"Contato (troque depois): <b>email@exemplo.org</b> · Instagram: <b>@ateencontrar</b>",
+      bar_text:"<b>Meta:</b> 500.000 € · <b>PKS</b> · Início rápido após captação"
+    },
+
+    fr: {
+      title: "Até Encontrar | Recherche PKS",
+      desc: "Campagne pour lancer une recherche sur le syndrome de Pallister-Killian (PKS) avec des organoïdes cérébraux. Objectif : 500 000 €.",
+
+      nav_home:"Accueil", nav_donate:"Donner", nav_video:"Vidéo", nav_research:"Recherche", nav_pks:"PKS",
+      btn_donate_now:"Donner maintenant", btn_copy_link:"Copier le lien", btn_watch_video:"Voir la vidéo",
+
+      hero_kicker:"Une campagne pour démarrer rapidement une recherche sur Pallister-Killian (PKS)",
+      hero_title:"Até Encontrar",
+      hero_sub:"Il existe un <b>laboratoire aux États-Unis</b> avec une <b>autorisation pour ce type de recherche</b>. Dès que le financement initial est réuni, nous pouvons démarrer rapidement un programme avec <b>3 enfants atteints de PKS</b>.",
+      chip_ready:"⚡ Prêt à démarrer",
+      chip_3kids:"👶 Étude avec 3 enfants",
+      chip_org:"🧠 Organoïdes cérébraux",
+      chip_goal:"🎯 Objectif : 500 000 €",
+      tag_fda:"✅ Autorisations en place",
+      tag_fast:"🚀 Démarrage rapide après collecte",
+      tag_goal_prefix:"Objectif :",
+      quote_main:"« Toutes les maladies sont curables. Encore faut-il trouver le traitement. »",
+      quote_fine:"La recherche prend du temps et il n’y a pas de garanties — mais sans recherche, rien ne commence.",
+      media_tag:"Image symbolique — sans exposition",
+
+      // Your requested French text
+      why_title:"Pourquoi votre aide est essentielle",
+      why_p1:"Giulia est atteinte du syndrome de Pallister-Killian, une maladie génétique rare pour laquelle aucun traitement curatif n’existe aujourd’hui. La médecine propose uniquement des soins de soutien. Mais la science, elle, ouvre d’autres perspectives.",
+      why_p2:"Après dix mois de recherches approfondies et l’analyse de dizaines d’articles scientifiques, nous avons identifié une approche innovante basée sur les <b>organoïdes cérébraux</b>.",
+      why_lead:"Cette approche permet de :",
+      why_li1:"reproduire la maladie en laboratoire,",
+      why_li2:"tester des médicaments déjà existants,",
+      why_li3:"évaluer leur efficacité et leur toxicité,",
+      why_li4:"accélérer considérablement la recherche.",
+      why_p3:"Le laboratoire partenaire dispose déjà des autorisations nécessaires pour mener ce type de recherche. Le projet est prêt. La science est prête. Ce qu’il manque aujourd’hui, ce sont les fonds.",
+      why_goal:"🎯 <big>Objectif : 500 000 €</big><br/>Pour lancer immédiatement la recherche.<br/><br/>Chaque jour compte.<br/>Chaque mois de retard est du temps perdu pour Giulia.<br/><br/>Avec votre soutien, nous pouvons transformer une maladie sans solution en une maladie traitable.",
+
+      donate_title:"Donner maintenant",
+      donate_sub:"Notre objectif est simple : réunir <b>500 000 €</b> pour lancer immédiatement la recherche PKS avec 3 enfants. Si vous ne pouvez pas donner, <b>partager</b> aide énormément.",
+      donate_tip:"<b>💬 Astuce :</b> partagez avec famille, école, communauté, entreprise et amis.",
+      donate_pix_title:"PIX (Brésil)",
+      donate_pix_desc:"Ajoutez ici la clé / QR code quand il sera prêt",
+      donate_card_title:"Carte",
+      donate_card_desc:"Ajoutez ici le lien de paiement sécurisé",
+      donate_intl_title:"Don international",
+      donate_intl_desc:"Liens / informations pour les dons hors Brésil",
+      soon:"Bientôt",
+      donate_share_title:"Vous ne pouvez pas donner ?",
+      donate_share_text:"Partagez cette page à <b>5 personnes</b>. Une campagne accélère quand beaucoup de monde la voit.",
+
+      video_title:"Notre histoire (et pourquoi nous courons)",
+      video_sub:"Nous nous exposons juste ce qu’il faut pour accélérer la collecte — avec respect, sans transformer la vie en spectacle. L’objectif : <b>démarrer la recherche</b>.",
+      video_watch:"Voir la vidéo",
+      video_note:"Si vous n’avez pas encore la vidéo, laissez ainsi et on la remplacera ensuite.",
+      video_short:"En quelques lignes",
+      video_text:"Notre fille est atteinte du <b>syndrome de Pallister-Killian (PKS)</b>. Bien qu’elle ne présente pas de malformations structurelles majeures, elle a un retard moteur et social important.<br><br>Nous avons une opportunité concrète : un laboratoire aux États-Unis dispose déjà des autorisations nécessaires pour ce type de recherche. Dès que l’objectif est atteint, l’étude peut commencer rapidement.",
+      video_li1:"<b>Objectif :</b> 500 000 €",
+      video_li2:"<b>Démarrage :</b> dès que les fonds sont réunis",
+      video_li3:"<b>Phase initiale :</b> 3 enfants atteints de PKS",
+
+      research_title:"Ce que nous allons étudier (avec des organoïdes)",
+      research_sub:"L’idée est simple : créer un modèle biologique en laboratoire pour tester des stratégies plus sûrement, avant toute réflexion clinique.",
+      research_how_title:"Comment ça marche",
+      research_how_text:"L’étude démarre par une <b>biopsie de peau</b> (procédure simple). À partir de ces cellules, le laboratoire peut créer des <b>organoïdes cérébraux</b> — des modèles permettant d’étudier certains mécanismes du neurodéveloppement.<br><br>En pratique, cela crée un <b>« avatar biologique »</b> pour explorer le PKS et tester des hypothèses sans expérimenter directement sur les enfants.",
+      research_why_title:"Pourquoi des organoïdes ?",
+      research_why_text:"Parce qu’ils permettent d’observer des mécanismes et d’accélérer le tri des stratégies prometteuses.",
+      research_deliver_title:"Ce que cette phase apporte",
+      research_deliver_text:"Cette phase fournit des preuves initiales (« preuve de principe ») et aide à prioriser les pistes les plus plausibles.",
+      research_li1:"Modèles dérivés du patient pour étudier les mécanismes",
+      research_li2:"Tests initiaux pour évaluer des hypothèses",
+      research_li3:"Résultats guidant les prochaines étapes",
+      research_no_promise_title:"Pas de promesse — un plan réel",
+      research_no_promise_text:"Aucune garantie de résultat, mais un chemin structuré prêt à démarrer dès que l’objectif est atteint.",
+
+      pks_title:"Qu’est-ce que Pallister-Killian (PKS) ?",
+      pks_sub:"Le PKS est une maladie génétique rare du neurodéveloppement, souvent en mosaïque, d’où une grande variabilité. Cette campagne vise à accélérer une recherche appliquée au PKS.",
+      pks_diff_title:"Pourquoi des cas si différents ?",
+      pks_diff_text:"Parce qu’en mosaïque, la proportion et la distribution des cellules concernées varient fortement. Les réseaux sociaux ne reflètent pas un échantillon scientifique.",
+      pks_li1:"Variabilité réelle — chaque enfant est unique",
+      pks_li2:"Pas de traitement curatif spécifique à ce jour",
+      pks_li3:"La recherche ouvre des possibilités",
+      pks_impact_title:"Impact",
+      pks_impact_text:"Cette initiative est centrée sur le PKS, peut aider d’autres enfants avec la même condition et, à terme, ouvrir des voies pour des maladies aux mécanismes proches.",
+      pks_need_title:"De quoi avons-nous besoin maintenant ?",
+      pks_need_text:"De vitesse. La science est prête — il manque les ressources.",
+
+      footer_right:"PKS · Démarrage rapide · Recherche avec organoïdes",
+      footer_contact:"Contact (à remplacer) : <b>email@exemple.org</b> · Instagram : <b>@ateencontrar</b>",
+      bar_text:"<b>Objectif :</b> 500 000 € · <b>PKS</b> · Démarrage rapide après collecte"
+    },
+
+    en: {
+      title: "Até Encontrar | PKS Research",
+      desc: "Campaign to start Pallister-Killian syndrome (PKS) research using brain organoids. Goal: €500,000.",
+
+      nav_home:"Home", nav_donate:"Donate", nav_video:"Video", nav_research:"Research", nav_pks:"PKS",
+      btn_donate_now:"Donate now", btn_copy_link:"Copy link", btn_watch_video:"Watch video",
+
+      hero_kicker:"A campaign to start Pallister-Killian (PKS) research quickly",
+      hero_title:"Até Encontrar",
+      hero_sub:"There is a <b>US-based laboratory</b> with the required <b>authorizations for this type of research</b>. Once the initial funding is raised, we can start quickly with <b>3 children with PKS</b>.",
+      chip_ready:"⚡ Ready to start",
+      chip_3kids:"👶 Study with 3 children",
+      chip_org:"🧠 Brain organoids",
+      chip_goal:"🎯 Goal: €500,000",
+      tag_fda:"✅ Authorizations in place",
+      tag_fast:"🚀 Fast start after fundraising",
+      tag_goal_prefix:"Goal:",
+      quote_main:"“All diseases are curable. We still need to find the treatment.”",
+      quote_fine:"Research takes time and there are no guarantees — but without research, nothing starts.",
+      media_tag:"Symbolic image — minimal exposure",
+
+      why_title:"Why your help is essential",
+      why_p1:"Giulia has Pallister-Killian syndrome, a rare genetic condition with no curative treatment today. Medicine offers supportive care — but science can open new paths.",
+      why_p2:"After ten months of research and reviewing dozens of scientific papers, we identified an innovative approach based on <b>brain organoids</b>.",
+      why_lead:"This approach can:",
+      why_li1:"recreate the condition in the lab,",
+      why_li2:"test existing drugs,",
+      why_li3:"evaluate efficacy and toxicity,",
+      why_li4:"significantly accelerate research.",
+      why_p3:"The partner lab already has the necessary authorizations to run this type of research. The project is ready. Science is ready. What’s missing is funding.",
+      why_goal:"🎯 <big>Goal: €500,000</big><br/>To launch the research immediately.<br/><br/>Every day counts.<br/>Every month of delay is lost time for Giulia.<br/><br/>With your support, we can turn a condition with no solution into a treatable one.",
+
+      donate_title:"Donate now",
+      donate_sub:"Our goal is simple: raise <b>€500,000</b> to start PKS research immediately with 3 children. If you can’t donate, <b>sharing</b> helps a lot.",
+      donate_tip:"<b>💬 Tip:</b> share with family, school, community, workplace and friends.",
+      donate_pix_title:"PIX (Brazil)",
+      donate_pix_desc:"Add PIX key / QR code here later",
+      donate_card_title:"Card",
+      donate_card_desc:"Add secure payment link here",
+      donate_intl_title:"International donation",
+      donate_intl_desc:"Links / details for donations outside Brazil",
+      soon:"Coming soon",
+      donate_share_title:"Can’t donate right now?",
+      donate_share_text:"Share this page with <b>5 people</b>. Campaigns accelerate when more people see them.",
+
+      video_title:"Our story (and why we’re racing)",
+      video_sub:"We’ll share what’s necessary to accelerate fundraising — respectfully. The goal: <b>start the research</b>.",
+      video_watch:"Watch the video",
+      video_note:"If you don’t have the video yet, leave it and we’ll replace it later.",
+      video_short:"In a few lines",
+      video_text:"Our daughter has <b>Pallister-Killian syndrome (PKS)</b>. Although she has no major structural malformations, she has significant motor and social delay.<br><br>We have a concrete opportunity: a US laboratory already has the necessary authorizations for this research. Once funding is secured, the study can start quickly.",
+      video_li1:"<b>Goal:</b> €500,000",
+      video_li2:"<b>Start:</b> as soon as funding is secured",
+      video_li3:"<b>Initial scope:</b> 3 children with PKS",
+
+      research_title:"What we will study (with organoids)",
+      research_sub:"The idea is simple: create a lab model to test strategies more safely before any clinical path is considered.",
+      research_how_title:"How it works",
+      research_how_text:"The study starts with a simple <b>skin biopsy</b>. From these cells, the lab can create <b>brain organoids</b> — models that help study neurodevelopment mechanisms.<br><br>This creates a biological “avatar” to explore PKS and test hypotheses without testing directly on children.",
+      research_why_title:"Why organoids?",
+      research_why_text:"Because they help observe mechanisms and speed up screening of promising strategies.",
+      research_deliver_title:"What this phase delivers",
+      research_deliver_text:"This phase provides early evidence (“proof of principle”) and helps prioritize which paths are most likely to advance.",
+      research_li1:"Patient-derived models to study mechanisms",
+      research_li2:"Early tests to evaluate hypotheses",
+      research_li3:"Results guiding next steps",
+      research_no_promise_title:"No promises — a real plan",
+      research_no_promise_text:"No guaranteed outcome, but a structured path ready to start once the goal is reached.",
+
+      pks_title:"What is Pallister-Killian (PKS)?",
+      pks_sub:"PKS is a rare genetic neurodevelopmental condition, often mosaic, which leads to high variability. This campaign aims to accelerate PKS-focused research.",
+      pks_diff_title:"Why are cases so different?",
+      pks_diff_text:"Because mosaicism varies in proportion and distribution. Social media is not a scientific sample.",
+      pks_li1:"Real variability — every child is unique",
+      pks_li2:"No specific curative treatment today",
+      pks_li3:"Research opens possibilities",
+      pks_impact_title:"Impact",
+      pks_impact_text:"This initiative is PKS-focused, may help other children with PKS, and later open paths for related conditions.",
+      pks_need_title:"What do we need now?",
+      pks_need_text:"Speed. Science is ready — resources are missing.",
+
+      footer_right:"PKS · Fast start · Organoid-based research",
+      footer_contact:"Contact (replace later): <b>email@example.org</b> · Instagram: <b>@ateencontrar</b>",
+      bar_text:"<b>Goal:</b> €500,000 · <b>PKS</b> · Fast start after fundraising"
+    }
+  };
+
+  function applyLang(lang){
+    const dict = i18n[lang] || i18n.pt;
+
+    document.documentElement.lang = (lang === 'pt') ? 'pt-BR' : (lang === 'fr' ? 'fr' : 'en');
+    document.title = dict.title;
+    document.getElementById('metaDesc').setAttribute('content', dict.desc);
+
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined){
+        el.innerHTML = dict[key];
+      }
+    });
+  }
+
+  const langSelect = document.getElementById('lang');
+  applyLang('pt');
+  langSelect.addEventListener('change', (e)=>applyLang(e.target.value));
 </script>
 
 </body>
